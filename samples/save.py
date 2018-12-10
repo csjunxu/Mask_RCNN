@@ -74,8 +74,8 @@ class_names = ['BG', 'person', 'bicycle', 'car', 'motorcycle', 'airplane',
                'sink', 'refrigerator', 'book', 'clock', 'vase', 'scissors',
                'teddy bear', 'hair drier', 'toothbrush']
 file_names = next(os.walk(IMAGE_DIR))[2]
-FILE_ROOT_DIR = "./sliced_img"
-OUT_ROOT_DIR = "sliced_mask"
+FILE_ROOT_DIR = "/home/csjunxu/Project/sliced_img_JX"
+OUT_ROOT_DIR = "/home/csjunxu/Project/sliced_mask_JX"
 if not os.path.isdir(OUT_ROOT_DIR):
     os.makedirs(OUT_ROOT_DIR)
 
@@ -95,8 +95,7 @@ for counter, fl in enumerate(filenames):
     results = model.detect([image], verbose=1)
 
     r = results[0]
-    fig = visualize.save_instances(image, r['rois'], r['masks'], r['class_ids'],
-        class_names, r['scores'])
+    fig = visualize.save_instances(image, r['rois'], r['masks'], r['class_ids'], class_names, r['scores'])
     # fig.savefig(output_path, bbox_inches='tight', pad_inches=0)
     
     # print(fig.shape)

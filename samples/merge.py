@@ -4,7 +4,7 @@ import numpy as np
 import glob
 # height, width
 # (37888, 66560)
-root_dir = "sliced_mask"
+root_dir = "sliced_mask_JX"
 
 file_list = glob.glob(os.path.join(root_dir, "*.png"))
 
@@ -33,7 +33,7 @@ for counter, fl in enumerate(file_list):
         int(box_location[2]), int(box_location[3])
 
     img = plt.imread(fl)
-    total_image[x_min:x_max, y_min:y_max,:] = img
+    total_image[x_min:x_max, y_min:y_max, :] = img
 
 plt.imsave("masked_output.png", total_image)
 
