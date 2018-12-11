@@ -105,9 +105,9 @@ class SatelliteDataset(utils.Dataset):
         
         # add image
         self.add_image(source="satellite", image_id=0,
-                       path="./mask_annotation/source/a2.jpg",
+                       path="/home/csjunxu/Project/Mask_annotation/source/a2.jpg",
                        mask_path="new_mask.png", 
-                       json_path="./mask_annotation/area/a2_area.json")
+                       json_path="/home/csjunxu/Project/Mask_annotation/area/a2_area.json")
                         
     
     def load_mask(self, image_id):
