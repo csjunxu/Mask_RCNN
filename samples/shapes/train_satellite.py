@@ -22,7 +22,7 @@ from mrcnn.model import log
 
 # directory to save logs and trained model
 MODEL_DIR = os.path.join(ROOT_DIR, "logs")
-COCO_MODEL_PATH = os.path.join(ROOT_DIR, "mask_rcnn_coco.h5")
+COCO_MODEL_PATH = os.path.join(ROOT_DIR, "mask_rcnn_satellite.h5")
 
 # Download coco trained weights from Releases if needed
 if not os.path.exists(COCO_MODEL_PATH):
@@ -112,7 +112,7 @@ class SatelliteDataset(utils.Dataset):
     
     def load_mask(self, image_id):
         """
-        ============================================================
+        ===========================================================
            For this preliminary task, we only work on three classes
            
                         Tree,

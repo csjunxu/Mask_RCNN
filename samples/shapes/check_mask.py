@@ -3,12 +3,12 @@ import numpy as np
 import json
 import cv2
 
-mask = plt.imread('./mask_annotation/area/a2_area_rejion.png')
+mask = plt.imread('/home/csjunxu/Project/Mask_annotation/area/a2_area_rejion.png')
 mask_label = np.unique(mask)
 print(mask_label.shape)
 print(mask_label)
 
-with open('./mask_annotation/area/a2_area.json') as f:
+with open('/home/csjunxu/Project/Mask_annotation/area/a2_area.json') as f:
     data = json.load(f)
 
 print(data['imgHeight'])
@@ -62,13 +62,13 @@ for obj in data['objects']:
         counter2 += 1
     cv2.fillPoly(black_image, np.array([obj['polygon']]).astype(int), color_dict[obj['label']])
     # label_set.add(obj['label'])
-cv2.imwrite('new_mask2.png', black_image)
+cv2.imwrite('new_mask.png', black_image)
 
 print(counter1, counter2)
-"""
+'''
 cv2.imshow('mask', black_image)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 cv2.imwrite("new_mask.png", black_image)
-"""
+'''
 # print(label_set)
