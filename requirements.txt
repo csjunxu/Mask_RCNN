@@ -1,6 +1,6 @@
 numpy
 scipy
-Pillow5.2.0
+Pillow
 cython
 matplotlib
 scikit-image

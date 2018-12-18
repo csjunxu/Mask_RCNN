@@ -72,10 +72,10 @@ DEFAULT_DATASET_YEAR = "2017"
 class CocoConfig(Config):
     """Configuration for training on MS COCO.
     Derives from the base Config class and overrides values specific
-    to the COCO dataset.
+    to the SATELLITE dataset.
     """
     # Give the configuration a recognizable name
-    NAME = "coco"
+    NAME = "sate"
 
     # We use a GPU with 12GB memory, which can fit two images.
     # Adjust down if you use a smaller GPU.
@@ -85,7 +85,7 @@ class CocoConfig(Config):
     # GPU_COUNT = 8
 
     # Number of classes (including background)
-    NUM_CLASSES = 1 + 80  # COCO has 80 classes
+    NUM_CLASSES = 1 + 68  # satellite images has 68 classes
 
 
 ############################################################
@@ -109,10 +109,12 @@ class CocoDataset(utils.Dataset):
         if auto_download is True:
             self.auto_download(dataset_dir, subset, year)
 
-        coco = COCO("{}/annotations/instances_{}{}.json".format(dataset_dir, subset, year))
+        coco = COCO("{}/annotations/train.json".format(dataset_dir))
+        # coco = COCO("{}/annotations/instances_{}{}.json".format(dataset_dir, subset, year))
         if subset == "minival" or subset == "valminusminival":
             subset = "val"
-        image_dir = "{}/{}{}".format(dataset_dir, subset, year)
+        # image_dir = "{}/{}{}".format(dataset_dir, subset, year)
+        image_dir = "{}/{}images".format(dataset_dir, subset)
 
         # Load all classes or a subset?
         if not class_ids:
@@ -472,7 +474,7 @@ if __name__ == '__main__':
 
     # Load weights
     print("Loading weights ", model_path)
-    model.load_weights(model_path, by_name=True, exclude=["mrcnn_bbox_fc", "mrcnn_class_logits", "mrcnn_mask"])
+    model.load_weights(model_path, by_name=True)
 
     # Train or evaluate
     if args.command == "train":

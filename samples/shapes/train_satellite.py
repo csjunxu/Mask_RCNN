@@ -9,7 +9,7 @@ import cv2
 import json
 import matplotlib
 import matplotlib.pyplot as plt
-
+import pdb
 ROOT_DIR = os.path.abspath("../../")
 
 # Import Mask
@@ -111,6 +111,7 @@ class SatelliteDataset(utils.Dataset):
                         
     
     def load_mask(self, image_id):
+        # pdb.set_trace()
         """
         ===========================================================
            For this preliminary task, we only work on three classes
@@ -135,9 +136,10 @@ class SatelliteDataset(utils.Dataset):
             cv2.fillPoly(black_ground, np.array([obj['polygon']]).astype(int), (1.,))
             mask_array.append(black_ground)
             class_id_array.append(class_dict[obj['label']])
-        
-        
+
+        pdb.set_trace()
         mask_array = np.array(mask_array).transpose(1, 2, 0).astype(bool)
+        # mask_array = np.array(mask_array).transpose(1, 2, 0).astype(bool) will cause MemoryError
         class_id_array = np.array(class_id_array)
         
         return mask_array, class_id_array
